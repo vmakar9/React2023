@@ -1,5 +1,5 @@
-import {axiosService} from "./Axios.service";
-import {urls} from "../urls/Urls";
+import {axiosService} from "./axios.service";
+import {urls} from "../urls/urls";
 
 
 const postsService={
