@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {carValidator} from "../../validators/carValidator";
-import {carService} from "../../services/car.service";
 import {carActions} from "../../redux/slices/carSlice";
 
 export const CarForm = () => {
@@ -23,16 +22,12 @@ export const CarForm = () => {
     }, [carForUpdate, setValue]);
 
     const update = async (car) => {
-        await carService.updateById(carForUpdate.id, car)
-        dispatch(carActions.trigger())
-        dispatch(carActions.setCarForUpdate(null))
+       await dispatch(carActions.updateById({id:carForUpdate.id,car:car}))
         reset()
     }
     const save = async (car) => {
-        await carService.create(car)
-        dispatch(carActions.trigger())
+        await dispatch(carActions.create({car}))
         reset()
-
     }
 
     return (
